@@ -135,7 +135,7 @@ useEffect(()=>{
 
 
 
-<Confirm   header="Delete a task" content={`are you sure you want to delete this task ${router.query.id}`}
+<Confirm   header="Delete a task" content={`are you sures you want to delete this task ${router.query.id}`}
 open={openConfirm}
 onCancel={()=> setOpenConfirm(false)}
 onConfirm={()=> typeof router.query.id === 'string' && deleteTask(router.query.id )}  />
