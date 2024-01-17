@@ -10,10 +10,8 @@ const {method,query,body} = req
     switch (method) {
         case 'GET':
 try {
-    const text = 'SELECT * FROM tasks WHERE id = $1'
-const values = [query.id];
-const result = await conn.query(text,values)
-console.log(result)
+    const result = await sql`SELECT * FROM tasks WHERE id = ${typeof query.id === 'number' && query.id}`;
+
 
 
 if(result.rows.length === 0)
