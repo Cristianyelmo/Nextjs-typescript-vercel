@@ -35,7 +35,7 @@ export default function index({tasks}:Props) {
 
 export const getServerSideProps = async ()=>{
 
-const res = await fetch('http://localhost:3000/api/tasks')
+const res = await fetch('https://nextjs-typescript-vercel-gold.vercel.app/api/tasks')
 
 const tasks = await res.json()
 
