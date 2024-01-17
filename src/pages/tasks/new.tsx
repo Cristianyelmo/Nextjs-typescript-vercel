@@ -24,7 +24,7 @@ export default function newPage(){
 
 const createTask = async(task:Task)=>{
    
-   await fetch('http://localhost:3000/api/tasks',{
+   await fetch('https://nextjs-typescript-vercel-gold.vercel.app//api/tasks',{
     method:'POST',
     headers:{
         'Content-Type':'application/json'
@@ -37,7 +37,7 @@ const router = useRouter()
 
 
 const loadTask = async (id:string)=>{
-   const response = await fetch(`http://localhost:3000/api/tasks/${id}`)
+   const response = await fetch(`https://nextjs-typescript-vercel-gold.vercel.app//api/tasks/${id}`)
     
    const task = await response.json();
    setTask({title:task.title,description:task.description});
@@ -48,7 +48,7 @@ const loadTask = async (id:string)=>{
 
 const updateTask = async(id:string, task:Task)=>{
    
-    await fetch(`http://localhost:3000/api/tasks/${id}`,{
+    await fetch(`https://nextjs-typescript-vercel-gold.vercel.app//api/tasks/${id}`,{
      method:'PUT',
      headers:{
          'Content-Type':'application/json'
@@ -84,7 +84,7 @@ router.push("/")
       
 
         try {
-            await fetch(`http://localhost:3000/api/tasks/${id}`,{
+            await fetch(`https://nextjs-typescript-vercel-gold.vercel.app//api/tasks/${id}`,{
                 method:'DELETE',
              
                });

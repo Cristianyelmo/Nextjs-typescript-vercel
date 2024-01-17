@@ -21,7 +21,16 @@ console.log(query);
 }
        
 case 'POST':
- 
+  const {title,description}=body;
+
+  const query = await sql`INSERT INTO tasks(title,description) VALUES (${title},${description})`;
+
+
+
+
+
+console.log(body);
+    return res.status(200).json(query.rows[0]);
 
     default:
         return res.status(400).json('invalid method');

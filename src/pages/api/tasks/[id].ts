@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import {conn} from '../../../utils/database'
-
+import { sql } from '@vercel/postgres';
 export default async (req:NextApiRequest,res:NextApiResponse) =>{
     console.log(req.query)
   
@@ -40,13 +40,18 @@ return res.status(404).json({message:"task not founs"})
         return res.status(200).json('creating taks');
        case 'DELETE':
         try {
-            const text = 'DELETE FROM tasks WHERE id = $1 RETURNING *'
-        const values = [query.id];
-        const result = await conn.query(text,values)
-        console.log(result)
+
+           
+            const result = await sql`DELETE FROM tasks WHERE id = ${typeof query.id === 'number' && query.id } RETURNING *`;
+        
+
+
+
+       
         
         
-        if(result.rows.rowCount === 0)
+        
+        if(result.rowCount === 0)
         return res.status(404).json({message:"task not founs"})
         
         
@@ -63,10 +68,8 @@ return res.status(404).json({message:"task not founs"})
 
             try {
                 const {title,description} = body
-                const text = 'UPDATE tasks SET title = $1,description = $2 WHERE id = $3 RETURNING * '
-            const values = [title,description,query.id];
-            const result = await conn.query(text,values)
-            console.log(result)
+                const result = await sql`UPDATE tasks SET title = ${title},description = ${description} WHERE id = ${typeof query.id === 'number' && query.id} RETURNING * `;
+            
             
             
             if(result.rows.length === 0)
