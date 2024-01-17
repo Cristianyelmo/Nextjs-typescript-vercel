@@ -10,7 +10,7 @@ const {method,query,body} = req
     switch (method) {
         case 'GET':
 try {
-    const result = await sql`SELECT * FROM tasks WHERE id = ${typeof query.id === 'number' && query.id}`;
+    const result = await sql`SELECT * FROM tasks WHERE id = ${typeof query.id === 'string' && query.id}`;
 
 
 
@@ -40,7 +40,7 @@ return res.status(404).json({message:"task not founs"})
         try {
 
            
-            const result = await sql`DELETE FROM tasks WHERE id = ${typeof query.id === 'number' && query.id } RETURNING *`;
+            const result = await sql`DELETE FROM tasks WHERE id = ${typeof query.id === 'string' && query.id } RETURNING *`;
         
 
 
@@ -66,7 +66,7 @@ return res.status(404).json({message:"task not founs"})
 
             try {
                 const {title,description} = body
-                const result = await sql`UPDATE tasks SET title = ${title},description = ${description} WHERE id = ${typeof query.id === 'number' && query.id} RETURNING * `;
+                const result = await sql`UPDATE tasks SET title = ${title},description = ${description} WHERE id = ${typeof query.id === 'string' && query.id} RETURNING * `;
             
             
             
